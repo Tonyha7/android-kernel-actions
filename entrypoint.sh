@@ -21,15 +21,15 @@ extract_tarball(){
     tar xf "$1" -C "$2"
 }
 
-workdir="$GITHUB_WORKSPACE"
-arch="$1"
-compiler="$2"
-defconfig="$3"
-image="$4"
-repo_name="${GITHUB_REPOSITORY/*\/}"
+workdir="$PWD"
+arch="arm64"
+compiler="clang/11"
+defconfig="chiron_defconfig"
+image="Image.gz-dtb"
+repo_name="xiaomi_msm8998"
 zipper_path="${ZIPPER_PATH:-zipper}"
 kernel_path="${KERNEL_PATH:-.}"
-name="${NAME:-$repo_name}"
+name="chiron_kernel"
 python_version="${PYTHON_VERSION:-3}"
 
 msg "Updating container..."
@@ -223,11 +223,9 @@ if [[ -e "$workdir"/"$zipper_path" ]]; then
     cd "$workdir"/"$zipper_path" || exit 127
     rm -rf .git
     zip -r9 "$zip_filename" . -x .gitignore README.md || exit 127
-    set_output outfile "$workdir"/"$zipper_path"/"$zip_filename"
     cd "$workdir" || exit 127
     exit 0
 else
     msg "No zip template provided, releasing the kernel image instead"
-    set_output outfile out/arch/"$arch"/boot/"$image"
     exit 0
 fi
