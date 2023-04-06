@@ -21,15 +21,15 @@ extract_tarball(){
     tar xf "$1" -C "$2"
 }
 
-workdir="$GITHUB_WORKSPACE"
-arch="$1"
-compiler="$2"
-defconfig="$3"
-image="$4"
-repo_name="${GITHUB_REPOSITORY/*\/}"
+workdir="$PWD"
+arch="arm64"
+compiler="gcc/10"
+defconfig="msm8937_defconfig"
+image="Image-dtb"
+repo_name="msm-4.9"
 zipper_path="${ZIPPER_PATH:-zipper}"
 kernel_path="${KERNEL_PATH:-.}"
-name="${NAME:-$repo_name}"
+name="msm8937"
 python_version="${PYTHON_VERSION:-3}"
 
 msg "Updating container..."
