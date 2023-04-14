@@ -23,13 +23,13 @@ extract_tarball(){
 
 workdir="$PWD"
 arch="arm64"
-compiler="clang/11"
-defconfig="chiron_defconfig"
-image="Image.gz-dtb"
-repo_name="xiaomi_msm8998"
+compiler="clang/14"
+defconfig="gki_defconfig"
+image="Image-dtb"
+repo_name="android12-5.10-lts"
 zipper_path="${ZIPPER_PATH:-zipper}"
 kernel_path="${KERNEL_PATH:-.}"
-name="chiron_kernel"
+name="gki_android12-5.10-lts"
 python_version="${PYTHON_VERSION:-3}"
 
 msg "Updating container..."
